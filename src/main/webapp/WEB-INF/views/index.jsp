@@ -7,6 +7,6 @@
 <body>
     <%@include file="header.jsp"%>
     <h1>어서와, 프론트 컨트롤러는 처음이지</h1><br/>
-    <img src="${imgSrc}" alt="어서와" />
+    <img src="${imgSrc}" alt="어서와" width="300" height="200"/>
 </body>
 </html>
