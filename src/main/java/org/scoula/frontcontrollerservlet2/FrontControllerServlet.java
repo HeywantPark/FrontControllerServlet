@@ -1,6 +1,7 @@
 package org.scoula.frontcontrollerservlet2;
 
 
+import org.scoula.frontcontrollerservlet2.controller.AboutController;
 import org.scoula.frontcontrollerservlet2.controller.Controller;
 import org.scoula.frontcontrollerservlet2.controller.HomeController;
 
@@ -21,6 +22,7 @@ public class FrontControllerServlet extends HttpServlet {
     public void init() throws ServletException {
         //주소값과 컨트롤러 맵핑
         controllers.put("/", new HomeController());
+        controllers.put("/about", new AboutController());
     }
 
     @Override
