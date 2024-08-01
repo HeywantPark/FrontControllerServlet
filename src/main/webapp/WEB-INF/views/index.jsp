@@ -5,9 +5,8 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+    <%@include file="header.jsp"%>
+    <h1>어서와, 프론트 컨트롤러는 처음이지</h1><br/>
+    <img src="${imgSrc}" alt="어서와" />
 </body>
 </html>

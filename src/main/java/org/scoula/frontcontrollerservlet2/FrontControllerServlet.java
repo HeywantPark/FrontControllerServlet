@@ -2,6 +2,7 @@ package org.scoula.frontcontrollerservlet2;
 
 
 import org.scoula.frontcontrollerservlet2.controller.Controller;
+import org.scoula.frontcontrollerservlet2.controller.HomeController;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -19,7 +20,7 @@ public class FrontControllerServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         //주소값과 컨트롤러 맵핑
-
+        controllers.put("/", new HomeController());
     }
 
     @Override
@@ -33,6 +34,25 @@ public class FrontControllerServlet extends HttpServlet {
 
     }
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String requestURI = request.getRequestURI();
+        System.out.println("requestURI = " + requestURI);
+
+        String contextPath = request.getContextPath();
+        System.out.println("contextPath = " + contextPath);
+
+        String path = requestURI.substring(contextPath.length());
+        System.out.println("path = " + path);
+
+        Controller controller = controllers.get(path);
+
+        if (controller != null) {
+            String viewName = controller.getView(request,response);
+            String targetView = "/WEB-INF/views/" + viewName + ".jsp";
+            request.getRequestDispatcher(targetView).forward(request, response);
+        } else {
+            String notFoundView = "/WEB-INF/views/404.jsp";
+            request.getRequestDispatcher(notFoundView).forward(request, response);
+        }
 
     }
 }
